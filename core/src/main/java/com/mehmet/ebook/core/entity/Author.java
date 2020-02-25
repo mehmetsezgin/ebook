@@ -1,6 +1,7 @@
 package com.mehmet.ebook.core.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class Author {
     private String authorName;
 
     @OneToMany(mappedBy="author",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -40,5 +41,15 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+        book.setAuthor(this);
+    }
+
+    public void removeBook(Book book) {
+        books.remove(book);
+        book.setAuthor(null);
     }
 }

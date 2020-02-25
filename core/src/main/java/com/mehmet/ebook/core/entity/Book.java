@@ -1,6 +1,8 @@
 package com.mehmet.ebook.core.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -32,9 +34,15 @@ public class Book {
     @Column(name = "good_reads_link")
     private String goodReadsLink;
 
-    @ManyToOne
-    @JoinColumn(name="genre_id")
-    private Genre genre;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> genres = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name="author_id")
@@ -104,12 +112,12 @@ public class Book {
         this.goodReadsLink = goodReadsLink;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public List<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     public Author getAuthor() {
@@ -118,5 +126,15 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public void addGenre(Genre genre) {
+        genres.add(genre);
+        genre.getBooks().add(this);
+    }
+
+    public void removeGenre(Genre genre) {
+        genres.remove(genre);
+        genre.getBooks().remove(this);
     }
 }

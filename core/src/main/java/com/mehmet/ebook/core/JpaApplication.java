@@ -39,19 +39,16 @@ public class JpaApplication implements CommandLineRunner {
         Genre action = new Genre();
         action.setGenreName("action");
 
-        Book buick_8 = new Book();
-
         Author king = new Author();
         king.setAuthorName("Stephen King");
-        Set<Book> kingBooks = new HashSet<>();
-        kingBooks.add(buick_8);
 
-
+        Book buick_8 = new Book();
         buick_8.setBookName("Buick 8");
         buick_8.setAuthor(king);
+        buick_8.addGenre(adventure);
+        buick_8.addGenre(action);
 
-        genreService.addGenre(adventure);
-        genreService.addGenre(action);
+        king.addBook(buick_8);
 
         authorService.addAuthor(king);
 
