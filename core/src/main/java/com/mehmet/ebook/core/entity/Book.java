@@ -28,7 +28,7 @@ public class Book {
     @Column(name = "yandex_link")
     private String yandexLink;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 5000)
     private String description;
 
     @Column(name = "good_reads_link")

@@ -12,10 +12,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
-@SpringBootApplication
+
+//@SpringBootApplication
 public class JpaApplication implements CommandLineRunner {
 
     @Autowired
@@ -32,6 +34,7 @@ public class JpaApplication implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) {
         Genre adventure = new Genre();
         adventure.setGenreName("adventure");
@@ -49,8 +52,31 @@ public class JpaApplication implements CommandLineRunner {
         buick_8.addGenre(action);
 
         king.addBook(buick_8);
+        try {
+            authorService.addAuthor(king);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        authorService.addAuthor(king);
+        //bookService.addBook(buick_8);
+
+
+        Author dostoyevski = new Author();
+        dostoyevski.setAuthorName("dostoyevski");
+
+
+        Book crimeAndPunishment = new Book();
+        dostoyevski.addBook(crimeAndPunishment);
+
+        crimeAndPunishment.setAuthor(dostoyevski);
+        crimeAndPunishment.addGenre(action);
+        try {
+            authorService.addAuthor(dostoyevski);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //bookService.addBook(crimeAndPunishment);
 
     }
 }

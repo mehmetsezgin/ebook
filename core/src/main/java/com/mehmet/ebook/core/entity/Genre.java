@@ -1,8 +1,11 @@
 package com.mehmet.ebook.core.entity;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -19,6 +22,13 @@ public class Genre {
 
     @ManyToMany(mappedBy = "genres")
     private List<Book> books = new ArrayList<>();
+
+    public Genre() {
+    }
+
+    public Genre(String genreName) {
+        this.genreName = genreName;
+    }
 
     public Long getId() {
         return id;
@@ -42,5 +52,18 @@ public class Genre {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Genre)) return false;
+        Genre genre = (Genre) o;
+        return Objects.equals(getGenreName(), genre.getGenreName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGenreName());
     }
 }
