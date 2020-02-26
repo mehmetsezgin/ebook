@@ -52,7 +52,7 @@ public class HtmlParserApplication implements CommandLineRunner {
         Map<String, Genre> genres = new HashMap<>();
 
         //int index = rows.size() - 1;
-        int index = 100;
+        int index = 10;
         for (Element row : rows.subList(1,index)) {
             Elements cells = row.getElementsByTag("td");
             Author author;
@@ -99,7 +99,7 @@ public class HtmlParserApplication implements CommandLineRunner {
                     Double.parseDouble(StringUtils.deleteAny(cells.get(8).text(),"MB").trim().replace(",",".")));
 
             book.setYandexLink("https://disk.yandex.com.tr/client/disk/Downloads/Downloads/meritokrasi/"  +
-                    cells.get(9).select("a").first().attr("href"));
+                    cells.get(9).select("a").first().attr("href").replace("\\","/"));
 
             String authorName = cells.get(2).text().trim();
             Author author = authors.get(authorName);
