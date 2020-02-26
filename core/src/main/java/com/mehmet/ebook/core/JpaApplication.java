@@ -58,9 +58,6 @@ public class JpaApplication implements CommandLineRunner {
             e.printStackTrace();
         }
 
-        //bookService.addBook(buick_8);
-
-
         Author dostoyevski = new Author();
         dostoyevski.setAuthorName("dostoyevski");
 
@@ -70,13 +67,6 @@ public class JpaApplication implements CommandLineRunner {
 
         crimeAndPunishment.setAuthor(dostoyevski);
         crimeAndPunishment.addGenre(action);
-        try {
-            authorService.addAuthor(dostoyevski);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        //bookService.addBook(crimeAndPunishment);
-
+        authorService.addAuthor(dostoyevski);
     }
 }

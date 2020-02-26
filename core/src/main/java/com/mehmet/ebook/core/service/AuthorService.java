@@ -14,7 +14,7 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     @Transactional
-    public void addAuthor(Author author) throws Exception{
+    public void addAuthor(Author author){
        authorRepository.save(author);
     }
 

@@ -28,7 +28,7 @@ public class Book {
     @Column(name = "yandex_link")
     private String yandexLink;
 
-    @Column(name = "description", length = 5000)
+    @Column(name = "description", length = 2500)
     private String description;
 
     @Column(name = "good_reads_link")
@@ -47,6 +47,10 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="author_id")
     private Author author;
+
+    @Column(name = "cover_image")
+    @Lob
+    private byte[] coverImage;
 
     public Long getId() {
         return id;
@@ -128,6 +132,14 @@ public class Book {
         this.author = author;
     }
 
+    public byte[] getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(byte[] coverImage) {
+        this.coverImage = coverImage;
+    }
+
     public void addGenre(Genre genre) {
         genres.add(genre);
         genre.getBooks().add(this);
@@ -137,4 +149,5 @@ public class Book {
         genres.remove(genre);
         genre.getBooks().remove(this);
     }
+
 }
