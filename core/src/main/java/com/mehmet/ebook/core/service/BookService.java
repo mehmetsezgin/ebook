@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class BookService {
@@ -24,5 +25,9 @@ public class BookService {
 
     public void deleteBook(Long bookId){
         bookRepository.deleteById(bookId);
+    }
+
+    public List<Book> getBooksByAuthorId(Long authorId){
+        return bookRepository.getBooksByAuthorId(authorId);
     }
 }

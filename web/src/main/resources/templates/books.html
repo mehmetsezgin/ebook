@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div th:if="${authorname != null}">
+                <h1> <span th:text="${authorname} + ' Books'"> </span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Id </th>
+                    <th> Book Name </th>
+                    <th> Publisher </th>
+                    <th> Actions </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${books.empty}">
+                    <td colspan="2"> No Record Available </td>
+                </tr>
+                <tr th:each="book : ${books}">
+                    <td><span th:text="${book.id}"></span></td>
+                    <td><span th:text="${book.bookName}"></span></td>
+                    <td><span th:text="${book.publisher}"></span></td>
+                    <td>
+                        <a class="btn btn-success" href="#" th:href="@{'/book/' + ${book.id}}"> Books </a>
+                        <a class="btn btn-success" href="#" th:href="@{'/delete/' + ${book.id}}"> Delete </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-success" href="#" th:href="@{/book}"> Add New </a>
+    </div>
+</div>
+</body>
+</html>

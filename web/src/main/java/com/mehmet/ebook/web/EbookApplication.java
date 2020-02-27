@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = "com.mehmet.ebook.core")
+@SpringBootApplication(scanBasePackages = {"com.mehmet.ebook.core","com.mehmet.ebook.web"})
 @EntityScan(basePackages = "com.mehmet.ebook.core.entity")
 @EnableJpaRepositories(basePackages = "com.mehmet.ebook.core.repository")
 public class EbookApplication {

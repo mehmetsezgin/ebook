@@ -22,6 +22,7 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.util.*;
 
+
 @SpringBootApplication(scanBasePackages = "com.mehmet.ebook.core")
 @EntityScan(basePackages = "com.mehmet.ebook.core.entity")
 @EnableJpaRepositories(basePackages = "com.mehmet.ebook.core.repository")
@@ -43,8 +44,8 @@ public class HtmlParserApplication implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        File input = new File("/Users/m.sezgin/Downloads/KATALOG.html");
-        //File input = new File("/home/mehmet/Downloads/KATALOG.html");
+        //File input = new File("/Users/m.sezgin/Downloads/KATALOG.html");
+        File input = new File("/home/mehmet/Downloads/KATALOG.html");
         Document doc = Jsoup.parse(input, "UTF-8");
         Book book;
         Elements rows = doc.getElementsByTag("tr");
@@ -52,7 +53,7 @@ public class HtmlParserApplication implements CommandLineRunner {
         Map<String, Genre> genres = new HashMap<>();
 
         //int index = rows.size() - 1;
-        int index = 10;
+        int index = 100;
         for (Element row : rows.subList(1,index)) {
             Elements cells = row.getElementsByTag("td");
             Author author;
