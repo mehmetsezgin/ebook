@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -100,6 +99,21 @@ public class RepositoryTest {
         Author newAdam_Fawler = authorRepository.getAuthorByAuthorName("adam fawler");
 
         assertEquals(newAdam_Fawler.getBooks().size(),1);
+
+    }
+
+    @Test
+    //@Transactional
+    public void testDeleteSingleBook(){
+        Book b1 = new Book();
+        b1.setBookName("b1");
+        entityManager.persist(b1);
+
+        assertEquals(1,bookRepository.findAll().size());
+
+        bookRepository.delete(b1);
+
+        assertEquals(0,bookRepository.findAll().size());
 
     }
 

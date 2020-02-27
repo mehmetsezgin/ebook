@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class AuthorService {
@@ -20,6 +21,10 @@ public class AuthorService {
 
     public Author getAuthorByAuthorName(String authorName){
         return authorRepository.getAuthorByAuthorName(authorName);
+    }
+
+    public List<Author> getAllAuthors(){
+        return authorRepository.findAll();
     }
 
 }

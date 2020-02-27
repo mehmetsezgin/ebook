@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Records</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Records </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Id </th>
+                    <th> Name </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${authors.empty}">
+                    <td colspan="2"> No Record Available </td>
+                </tr>
+                <tr th:each="author : ${authors}">
+                    <td><span th:text="${author.id}"> Id </span></td>
+                    <td><span th:text="${author.authorName}"> Name </span></td>
+                    <td>
+                        <a class="btn btn-success" href="#" th:href="@{'/view/' + ${author.id}}"> View </a>
+                        <a class="btn btn-success" href="#" th:href="@{'/delete/' + ${author.id}}"> Delete </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-success" href="#" th:href="@{/author}"> Add New </a>
+    </div>
+</div>
+</body>
+</html>
