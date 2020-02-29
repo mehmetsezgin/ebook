@@ -1,6 +1,7 @@
 package com.mehmet.ebook.core.service;
 
 import com.mehmet.ebook.core.entity.Book;
+import com.mehmet.ebook.core.entity.Genre;
 import com.mehmet.ebook.core.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,13 @@ public class BookService {
 
     public List<Book> getBooksByAuthorId(Long authorId){
         return bookRepository.getBooksByAuthorId(authorId);
+    }
+
+    public List<Book> getBooksByGenres(Genre genre){
+        return bookRepository.getBooksByGenres(genre);
+    }
+
+    public List<Book> getAllBooks(){
+        return bookRepository.findAll();
     }
 }

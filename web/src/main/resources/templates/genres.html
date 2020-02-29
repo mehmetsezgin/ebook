@@ -1,13 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All Authors</title>
+    <title>All Genres</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1> Authors </h1>
+            <h1> Genres </h1>
         </div>
     </div>
     <div class="row">
@@ -16,20 +16,20 @@
                 <thead>
                 <tr>
                     <th> Id </th>
-                    <th> Author Name </th>
+                    <th> Genre Name </th>
                     <th> Actions </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${authors.empty}">
+                <tr th:if="${genres.empty}">
                     <td colspan="2"> No Record Available </td>
                 </tr>
-                <tr th:each="author : ${authors}">
-                    <td><span th:text="${author.id}"></span></td>
-                    <td><span th:text="${author.authorName}"></span></td>
+                <tr th:each="genre : ${genres}">
+                    <td><span th:text="${genre.id}"></span></td>
+                    <td><span th:text="${genre.genreName}"></span></td>
                     <td>
-                        <a class="btn btn-success" href="#" th:href="@{'/getBooksByAuthor/' + ${author.id}}"> Books </a>
-                        <a class="btn btn-success" href="#" th:href="@{'/delete/' + ${author.id}}"> Delete </a>
+                        <a class="btn btn-success" href="#" th:href="@{'/getBooksByGenre/' + ${genre.id}}"> Books </a>
+                        <a class="btn btn-success" href="#" th:href="@{'/delete/' + ${genre.id}}"> Delete </a>
                     </td>
                 </tr>
                 </tbody>

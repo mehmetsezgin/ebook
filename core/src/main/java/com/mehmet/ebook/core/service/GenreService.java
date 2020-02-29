@@ -5,6 +5,8 @@ import com.mehmet.ebook.core.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GenreService {
 
@@ -25,5 +27,9 @@ public class GenreService {
 
     public Genre getGenreByGenreName(String genreName){
         return genreRepository.getGenreByGenreName(genreName);
+    }
+
+    public List<Genre> getAllGenres(){
+        return genreRepository.findAll();
     }
 }
